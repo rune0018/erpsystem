@@ -4,6 +4,12 @@ using System.Linq;
 
 namespace ERPsystem
 {
+
+    //todo
+    //1. lagermenu
+    //2. opretvare
+    //3. vareliste med liste af vare
+    //4. søgning igennem lager
     class Program
     {
         static void Main(string[] args)
