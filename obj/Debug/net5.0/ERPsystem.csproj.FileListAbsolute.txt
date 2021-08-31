@@ -1,0 +1,16 @@
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.csprojAssemblyReference.cache
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.AssemblyInfoInputs.cache
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.AssemblyInfo.cs
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.csproj.CoreCompileInputs.cache
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.exe
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.deps.json
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.runtimeconfig.json
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.runtimeconfig.dev.json
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.dll
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ref\ERPsystem.dll
+C:\Users\Acer\source\repos\ERPsystem\bin\Debug\net5.0\ERPsystem.pdb
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.dll
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ref\ERPsystem.dll
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.pdb
+C:\Users\Acer\source\repos\ERPsystem\obj\Debug\net5.0\ERPsystem.genruntimeconfig.cache
