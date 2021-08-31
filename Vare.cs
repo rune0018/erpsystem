@@ -1,6 +1,6 @@
 ﻿namespace ERPsystem
 {
-    public class Vare
+    public class Inventory
     {
         public int varenummer { get; set; }
         public string name { get; set; }

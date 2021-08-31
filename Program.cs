@@ -48,6 +48,7 @@ namespace ERPsystem
                 case 1:
                     break;
                 case 2:
+                    
                     break;
                 case 3:
                     break;
@@ -66,7 +67,7 @@ namespace ERPsystem
             Console.SetCursorPosition(9, 5);
             Console.BackgroundColor = ConsoleColor.Blue;
             int offset = 0;
-            foreach (Vare vare in lager.vareListe)
+            foreach (Inventory vare in lager.vareListe)
             {
                 //while(vare.varenummer.Length < 20)
                 //{
@@ -92,7 +93,7 @@ namespace ERPsystem
         {
             Console.Write(skriv);
         }
-        public static void Rediger_vare(Vare vare)
+        public static void Rediger_vare(Inventory vare)
         {
             Skærm.write("Tryk 1 for at redigere varenummer.\n" +
                 "Tryk 2 for at redigere navn.\n" +
@@ -141,11 +142,11 @@ namespace ERPsystem
     class lager
     {
 
-        public static List<Vare> vareListe = new List<Vare>();
+        public static List<Inventory> vareListe = new List<Inventory>();
         //opretter en vare og definere alt i Vare classen
         public static void Opret_vare(int varenummer, string name, int antal, float salgspris, float indkøbspris, int lagerplads)
         {
-            Vare nyvare = new Vare();
+            Inventory nyvare = new Inventory();
             nyvare.varenummer = varenummer;
             nyvare.name = name;
             nyvare.antal = antal;
@@ -157,13 +158,13 @@ namespace ERPsystem
         
 
         //søger efter varenummer der matcher søgning
-        public static List<Vare> søg_vare(int serach)
+        public static List<Inventory> søg_vare(int serach)
         {
-            IEnumerable<Vare> quere =
+            IEnumerable<Inventory> quere =
                 from vare in vareListe
                 where find_str(vare.varenummer.ToString(), serach.ToString().Length) == serach.ToString()
                 select (vare);
-            return (List<Vare>)quere;
+            return (List<Inventory>)quere;
         }
         public static string find_str(string input, int length)
         {
