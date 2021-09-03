@@ -6,10 +6,10 @@ namespace ERPsystem
 {
 
     //todo
-    //1. lagermenu
-    //2. opretvare
-    //3. vareliste med liste af vare
-    //4. søgning igennem lager
+    //1. lagermenu (søge efter vare)
+    //2. vareliste med liste af vare
+    //3. søgning igennem lager
+    //4. (bug)input kan ikke være kommatal
     class Program
     {
         static void Main(string[] args)
@@ -32,7 +32,7 @@ namespace ERPsystem
                 switch (GetTalFromUser("Hvilken pc vil du bruge"))
                 {
                     case 1:
-                        lagermenu();
+                        lagermenu(lager.vareListe);
                         break;
                     case 2:
                         break;
@@ -44,48 +44,61 @@ namespace ERPsystem
 
             } while (gentag);
         }
-        public static void lagermenu()
+        public static void lagermenu(List<Inventory> inventories)
         {
             write("Tryk på 1 for at oprette en vare\n");
             write("Tryk på 2 for at rette en vare\n");
-            write("Tryk på 3 for at se listen over varer\n");
+            write("Tryk på 3 for at søge efter en vare\n");
+
             switch (GetTalFromUser(""))
             {
                 case 1:
+                    opretvarer();
+                    lagermenu(inventories);
                     break;
                 case 2:
-                    
+                    Rediger_vare(lager.vareListe[FindIndexLager(GetTalFromUser("Varenummer"))]);
                     break;
                 case 3:
                     break;
                 default:
                     write("forkert input");
-                    lagermenu();
+                    lagermenu(lager.vareListe);
                     break;
             }
         }
+
         public static void opretvarer()
         {
-
+            Inventory nyvare = new Inventory();
+            nyvare.varenummer = GetTalFromUser("Varenummer");
+            nyvare.name = GetStringFromUser("Navn");
+            nyvare.antal = GetTalFromUser("Antal");
+            nyvare.salgspris = GetFloatFromUser("Salgspris");
+            nyvare.indkøbspris = GetFloatFromUser("Indkøbspris");
+            nyvare.lagerplads = GetTalFromUser("Lagerplads");
+            lager.vareListe.Add(nyvare);
         }
-        public static void Vareliste() //skriver alt info vi har om de vare vi har på en strukturet måde
+
+        public static void Vareliste(List<Inventory> inventories) //skriver alt info vi har om de vare vi har på en strukturet måde
         {
             Console.SetCursorPosition(9, 5);
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.Green;
             int offset = 0;
-            foreach (Inventory vare in lager.vareListe)
+            foreach (Inventory vare in inventories)
             {
-                //while(vare.varenummer.Length < 20)
-                //{
-                //    vare.varenummer = vare.varenummer + " ";
-                //}
-                //Console.Write(vare.varenummer);
-                //Console.SetCursorPosition(30, 5 + offset);
-                //while (vare.name.Length < 20)
-                //{
-                //    vare.name += " ";
-                //}
-                //Console.Write(vare.name);
+                string varenummerSTR = vare.varenummer.ToString();
+                while (varenummerSTR.Length < 20)
+                {
+                    varenummerSTR += " ";
+                }
+                Console.Write(vare.varenummer);
+                Console.SetCursorPosition(30, 5 + offset);
+                while (vare.name.Length < 20)
+                {
+                    vare.name += " ";
+                }
+                Console.Write(vare.name);
             }
         }
         public static int GetTalFromUser(string hint)
@@ -95,6 +108,22 @@ namespace ERPsystem
             int.TryParse(Console.ReadLine(), out svar);
             return svar;
         }
+
+        public static string GetStringFromUser(string hint)
+        {
+            Console.Write(hint + ": ");
+            string svar = Console.ReadLine();
+            return svar;
+        }
+
+        public static float GetFloatFromUser(string hint)
+        {
+            Console.Write(hint + ": ");
+            float svar;
+            float.TryParse(Console.ReadLine(), out svar);
+            return svar;
+        }
+
         public static void write(string skriv)
         {
             Console.Write(skriv);
@@ -130,7 +159,8 @@ namespace ERPsystem
             }
 
         }
-        public static float set_float(float sikkerhed)
+
+        public static float set_float(float sikkerhed = 1.0f)
         {
             float assignment;
             bool test = float.TryParse(Console.ReadLine(), out assignment);
@@ -143,6 +173,18 @@ namespace ERPsystem
                 Console.WriteLine("Tallet blev ikke ændret");
             }
             return sikkerhed;
+        }
+
+        public static int FindIndexLager(int search)
+        {
+            for(int indeks = 0;indeks <lager.vareListe.Count; indeks++)
+            {
+                if(lager.vareListe[indeks].varenummer == search)
+                {
+                    return indeks;
+                }
+            }
+            return -1;
         }
     }
     class lager

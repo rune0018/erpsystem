@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj": {}
+    "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj": {
+    "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj",
+        "projectUniqueName": "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj",
         "projectName": "ERPsystem",
-        "projectPath": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj",
-        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\obj\\",
+        "projectPath": "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj",
+        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Acer\\Desktop\\ERPsystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
