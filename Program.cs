@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ERPsystem
 {
 
     //todo
-    //1. lagermenu (søge efter vare)
-    //2. vareliste med liste af vare
-    //3. søgning igennem lager
-    //4. (bug)input kan ikke være kommatal
+    //1. (bug)input kan ikke være kommatal
+
     class Program
     {
         static void Main(string[] args)
@@ -46,26 +43,41 @@ namespace ERPsystem
         }
         public static void lagermenu(List<Inventory> inventories)
         {
-            write("Tryk på 1 for at oprette en vare\n");
-            write("Tryk på 2 for at rette en vare\n");
-            write("Tryk på 3 for at søge efter en vare\n");
-
-            switch (GetTalFromUser(""))
+            bool gentag = true;
+            do
             {
-                case 1:
-                    opretvarer();
-                    lagermenu(inventories);
-                    break;
-                case 2:
-                    Rediger_vare(lager.vareListe[FindIndexLager(GetTalFromUser("Varenummer"))]);
-                    break;
-                case 3:
-                    break;
-                default:
-                    write("forkert input");
-                    lagermenu(lager.vareListe);
-                    break;
-            }
+                write("Tryk på 1 for at oprette en vare\n");
+                write("Tryk på 2 for at rette en vare\n");
+                write("Tryk på 3 for at søge efter en vare\n");
+                write("Tryk på 4 for at se listen af vare\n");
+                write("Tryk på 5 for at fjerne fra lageret\n");
+                write("Tryk på 6 for at afslutte pc'en\n");
+                switch (GetTalFromUser(""))
+                {
+                    case 1:
+                        opretvarer();
+                        break;
+                    case 2:
+                        Rediger_vare(lager.vareListe[FindIndexLager(GetTalFromUser("Varenummer"))]);
+                        break;
+                    case 3:
+                        Vareliste(lager.søg_vare(GetTalFromUser("Varenummer start")));
+                        break;
+                    case 4:
+                        Vareliste(lager.vareListe);
+                        break;
+                    case 5:
+                        lager.vareListe.RemoveAt(FindIndexLager(GetTalFromUser("Varenummer")));
+                        break;
+                    case 6:
+                        gentag = false;
+                        break;
+                    default:
+                        write("forkert input\n");
+                        break;
+                }
+            } while (gentag);
+
         }
 
         public static void opretvarer()
@@ -82,24 +94,57 @@ namespace ERPsystem
 
         public static void Vareliste(List<Inventory> inventories) //skriver alt info vi har om de vare vi har på en strukturet måde
         {
-            Console.SetCursorPosition(9, 5);
-            Console.BackgroundColor = ConsoleColor.Green;
-            int offset = 0;
+            Console.Clear();
+            Console.SetCursorPosition(9, Console.CursorTop);
+            Console.ForegroundColor = ConsoleColor.Green;
             foreach (Inventory vare in inventories)
             {
+                Console.CursorLeft = 9;
                 string varenummerSTR = vare.varenummer.ToString();
+                string antalSTR = vare.antal.ToString();
+                string salgsprisSTR = vare.salgspris.ToString();
+                string indkøbsprisSTR = vare.indkøbspris.ToString();
+                string lagerPladsSTR = vare.lagerplads.ToString();
                 while (varenummerSTR.Length < 20)
                 {
                     varenummerSTR += " ";
                 }
-                Console.Write(vare.varenummer);
-                Console.SetCursorPosition(30, 5 + offset);
+                write(varenummerSTR);
+                Console.CursorLeft += 1;
                 while (vare.name.Length < 20)
                 {
                     vare.name += " ";
                 }
-                Console.Write(vare.name);
+                write(vare.name);
+                Console.CursorLeft += 1;
+                while (antalSTR.Length < 20)
+                {
+                    antalSTR += " ";
+                }
+                write(antalSTR);
+                Console.CursorLeft += 1;
+                while (salgsprisSTR.Length < 20)
+                {
+                    salgsprisSTR += " ";
+                }
+                write(salgsprisSTR);
+                Console.CursorLeft += 1;
+                while (indkøbsprisSTR.Length < 20)
+                {
+                    indkøbsprisSTR += " ";
+                }
+                write(indkøbsprisSTR);
+                Console.CursorLeft += 1;
+                while (lagerPladsSTR.Length < 20)
+                {
+                    lagerPladsSTR += " ";
+                }
+                write(lagerPladsSTR);
+                Console.CursorLeft += 1;
+                Console.CursorTop += 1;
             }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("");
         }
         public static int GetTalFromUser(string hint)
         {
@@ -130,6 +175,7 @@ namespace ERPsystem
         }
         public static void Rediger_vare(Inventory vare)
         {
+            Console.Clear();
             Skærm.write("Tryk 1 for at redigere varenummer.\n" +
                 "Tryk 2 for at redigere navn.\n" +
                 "Tryk 3 for at redigere antal.\n" +
@@ -185,43 +231,6 @@ namespace ERPsystem
                 }
             }
             return -1;
-        }
-    }
-    class lager
-    {
-
-        public static List<Inventory> vareListe = new List<Inventory>();
-        //opretter en vare og definere alt i Vare classen
-        public static void Opret_vare(int varenummer, string name, int antal, float salgspris, float indkøbspris, int lagerplads)
-        {
-            Inventory nyvare = new Inventory();
-            nyvare.varenummer = varenummer;
-            nyvare.name = name;
-            nyvare.antal = antal;
-            nyvare.salgspris = salgspris;
-            nyvare.indkøbspris = indkøbspris;
-            nyvare.lagerplads = lagerplads;
-            vareListe.Add(nyvare);
-        }
-        
-
-        //søger efter varenummer der matcher søgning
-        public static List<Inventory> søg_vare(int serach)
-        {
-            IEnumerable<Inventory> quere =
-                from vare in vareListe
-                where find_str(vare.varenummer.ToString(), serach.ToString().Length) == serach.ToString()
-                select (vare);
-            return (List<Inventory>)quere;
-        }
-        public static string find_str(string input, int length)
-        {
-            string output = "";
-            for (int i = 0; i < length; i++)
-            {
-                output = output + input[i];
-            }
-            return output;
         }
     }
 

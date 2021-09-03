@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj": {}
+    "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj": {
+    "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj",
+        "projectUniqueName": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj",
         "projectName": "ERPsystem",
-        "projectPath": "C:\\Users\\Acer\\Desktop\\ERPsystem\\ERPsystem.csproj",
-        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Acer\\Desktop\\ERPsystem\\obj\\",
+        "projectPath": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\ERPsystem.csproj",
+        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bruger\\source\\repos\\erpsystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

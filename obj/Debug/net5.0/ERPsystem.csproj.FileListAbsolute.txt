@@ -21,7 +21,6 @@ C:\Users\Bruger\Source\Repos\erpsystem\bin\Debug\net5.0\ERPsystem.runtimeconfig.
 C:\Users\Bruger\Source\Repos\erpsystem\bin\Debug\net5.0\ERPsystem.dll
 C:\Users\Bruger\Source\Repos\erpsystem\bin\Debug\net5.0\ref\ERPsystem.dll
 C:\Users\Bruger\Source\Repos\erpsystem\bin\Debug\net5.0\ERPsystem.pdb
-C:\Users\Bruger\Source\Repos\erpsystem\obj\Debug\net5.0\ERPsystem.csprojAssemblyReference.cache
 C:\Users\Bruger\Source\Repos\erpsystem\obj\Debug\net5.0\ERPsystem.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Bruger\Source\Repos\erpsystem\obj\Debug\net5.0\ERPsystem.AssemblyInfoInputs.cache
 C:\Users\Bruger\Source\Repos\erpsystem\obj\Debug\net5.0\ERPsystem.AssemblyInfo.cs
@@ -46,3 +45,4 @@ C:\Users\Acer\Desktop\ERPsystem\obj\Debug\net5.0\ERPsystem.dll
 C:\Users\Acer\Desktop\ERPsystem\obj\Debug\net5.0\ref\ERPsystem.dll
 C:\Users\Acer\Desktop\ERPsystem\obj\Debug\net5.0\ERPsystem.pdb
 C:\Users\Acer\Desktop\ERPsystem\obj\Debug\net5.0\ERPsystem.genruntimeconfig.cache
+C:\Users\Bruger\source\repos\erpsystem\obj\Debug\net5.0\ERPsystem.csproj.AssemblyReference.cache
