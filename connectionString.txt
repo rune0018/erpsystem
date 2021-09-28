@@ -1,0 +1,1 @@
+Server=localhost;Database=ERPSystem;Trusted_Connection=True;MultipleActiveResultSets=true

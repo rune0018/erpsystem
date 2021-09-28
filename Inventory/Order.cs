@@ -8,8 +8,8 @@ namespace ERPsystem
 {
     public class Order
     {
-        public string Itemname { get; set; }
-        public int Itemlokation { get; set; }
-        public int Amount { get; set; }
+        public int ID { get; set; }
+        public int CosutormorID { get; set; }
+        public DateTime date = DateTime.Now;
     }
 }

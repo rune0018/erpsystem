@@ -2,6 +2,7 @@
 {
     public class Item
     {
+        public int ID { get; set; }
         public int Itemnumber { get; set; }
         public string name { get; set; }
         public int amount { get; set; }

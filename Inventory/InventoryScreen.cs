@@ -60,12 +60,12 @@ namespace ERPsystem
             NewItem.SalePrice = Input.GetDoubleFromUser("Salgspris");
             NewItem.PurchasePrice = Input.GetDoubleFromUser("Indkøbspris");
             NewItem.Invetoryplace = Input.GetNumberFromUser("Lagerplads");
-            Inventory.Items.Add(NewItem);
+            Database.Insert(NewItem);
         }
 
-        public static void Inventorylist(List<Item> inventories) //skriver alt info vi har om de vare vi har på en strukturet måde
+        public static void Inventorylist(List<Item> items) //skriver alt info vi har om de vare vi har på en strukturet måde
         {
-            
+            Inventory.Items = Database.GetItems();
             Console.ForegroundColor = ConsoleColor.Green;
             UI.write("Varenummer");
             Console.CursorLeft = 20;
@@ -77,21 +77,24 @@ namespace ERPsystem
             Console.CursorLeft = 80;
             UI.write("Indkøbspris");
             Console.CursorLeft = 100;
-            UI.write("Lagerplads\n");
+            UI.write("Lagerplads");
+            Console.CursorLeft += 10;
+            UI.write("ID\n");
             int i = 0;
             while (i < Console.WindowWidth - 1)
             {
                 i++;
                 UI.write("=");
             }
-            foreach (Item vare in inventories)
+            foreach (Item item in items)
             {
                 
-                string ItemnumberSTR = vare.Itemnumber.ToString();
-                string amountSTR = vare.amount.ToString();
-                string SalepriceSTR = vare.SalePrice.ToString();
-                string PurchasePriceSTR = vare.PurchasePrice.ToString();
-                string InvetoryplaceSTR = vare.Invetoryplace.ToString();
+                string ItemnumberSTR = item.Itemnumber.ToString();
+                string amountSTR = item.amount.ToString();
+                string SalepriceSTR = item.SalePrice.ToString();
+                string PurchasePriceSTR = item.PurchasePrice.ToString();
+                string InvetoryplaceSTR = item.Invetoryplace.ToString();
+                string InvetoryIDSTR = item.ID.ToString();
 
                 
                 UI.write("\n");
@@ -101,11 +104,11 @@ namespace ERPsystem
                 }
                 UI.write(ItemnumberSTR);
                 Console.CursorLeft += 1;
-                while (vare.name.Length < 20)
+                while (item.name.Length < 20)
                 {
-                    vare.name += " ";
+                    item.name += " ";
                 }
-                UI.write(vare.name);
+                UI.write(item.name);
                 Console.CursorLeft += 1;
                 while (amountSTR.Length < 20)
                 {
@@ -125,11 +128,17 @@ namespace ERPsystem
                 }
                 UI.write(PurchasePriceSTR);
                 Console.CursorLeft += 1;
-                while (InvetoryplaceSTR.Length < 10)
+                while (InvetoryplaceSTR.Length < 20)
                 {
                     InvetoryplaceSTR += " ";
                 }
                 UI.write(InvetoryplaceSTR);
+                Console.CursorLeft += 1;
+                while (InvetoryIDSTR.Length < 20)
+                {
+                    InvetoryIDSTR += " ";
+                }
+                UI.write(InvetoryIDSTR);
                 Console.CursorLeft += 1;
             }
             Console.ForegroundColor = ConsoleColor.White;
@@ -138,7 +147,7 @@ namespace ERPsystem
 
 
         
-        public static void Rediger_vare(Item vare)
+        public static void Rediger_vare(Item item)
         {
             UI.write("Tryk 1 for at redigere varenummer.\n" +
                 "Tryk 2 for at redigere navn.\n" +
@@ -149,24 +158,25 @@ namespace ERPsystem
             switch (Input.GetNumberFromUser("Hvad vil du redigere"))
             {
                 case 1:
-                    vare.Itemnumber = Input.GetNumberFromUser("\n.Det gamle tal er " + vare.Itemnumber + " hvad skal det være");
+                    item.Itemnumber = Input.GetNumberFromUser("\n.Det gamle tal er " + item.Itemnumber + " hvad skal det være");
                     break;
                 case 2:
-                    UI.write("\nDet gamle navn er " + vare.name + " hvad skal det være: ");
-                    vare.name = Console.ReadLine();
+                    UI.write("\nDet gamle navn er " + item.name + " hvad skal det være: ");
+                    item.name = Console.ReadLine();
                     break;
                 case 3:
-                    vare.amount = Input.GetNumberFromUser("\n.Det gamle tal er " + vare.amount + " hvad skal det være");
+                    item.amount = Input.GetNumberFromUser("\n.Det gamle tal er " + item.amount + " hvad skal det være");
                     break;
                 case 4:
-                    UI.write("\n.Det gamle tal er " + vare.SalePrice + " hvad skal det være: ");
-                    vare.SalePrice = set_double(vare.SalePrice);
+                    UI.write("\n.Det gamle tal er " + item.SalePrice + " hvad skal det være: ");
+                    item.SalePrice = set_double(item.SalePrice);
                     break;
                 case 5:
-                    UI.write("\n.Det gamle tal er " + vare.PurchasePrice + " hvad skal det være: ");
-                    vare.PurchasePrice = set_double(vare.PurchasePrice);
+                    UI.write("\n.Det gamle tal er " + item.PurchasePrice + " hvad skal det være: ");
+                    item.PurchasePrice = set_double(item.PurchasePrice);
                     break;
             }
+            Database.Update(item);
 
         }
 

@@ -1,13 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace ERPsystem
 {
     public class Inventory
     {
+        
 
         public static List<Item> Items = new List<Item>();
         public static List<Order> Orders = new List<Order>();
+        public static List<OrderLine> OrderLines = new List<OrderLine>();
+
+        static Inventory()
+        {
+            Items = Database.GetItems();
+        }
         //opretter en vare og definere alt i Vare classen
         public static void CreateItem(int varenummer, string name, int antal, double salgspris, double indkøbspris, int lagerplads)
         {
@@ -50,17 +59,10 @@ namespace ERPsystem
         /// </summary>
         public static void ReciveOrder()
         {
+
             foreach (Item item in Items)
             {
-                for (int indeks = 0; indeks < Orders.Count; indeks++)
-                {
-                    if (Orders[indeks].Itemname == item.name)
-                    {
-                        item.amount += Orders[indeks].Amount;
-                        Orders.RemoveAt(indeks);
-                        break;
-                    }
-                }
+                Database.Update(item);
             }
         }
     }

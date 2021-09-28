@@ -25,7 +25,7 @@ namespace ERPsystem
                 switch (input)
                 {
                     case 1:
-                        AddOrder(Inventory.Items[InventoryScreen.FindIndexInventory(Input.GetNumberFromUser("Varenummer"))]);
+                        AddOrderLine(Inventory.Items[InventoryScreen.FindIndexInventory(Input.GetNumberFromUser("Varenummer"))]);
                         break;
                     case 2:
                         Inventory.ReciveOrder();
@@ -47,12 +47,12 @@ namespace ERPsystem
         /// Adds an order to the orders list using the item
         /// </summary>
         /// <param name="item"></param>
-        public static void AddOrder(Item item)
+        public static void AddOrderLine(Item item)
         {
-            Order NewOrder = new();
-            NewOrder.Itemname = item.name;
-            NewOrder.Itemlokation = item.Invetoryplace;
-            NewOrder.Amount = Input.GetNumberFromUser("Hvor mange flere vil du have bestilt");
+            OrderLine NewOrder = new();
+            NewOrder.OrderID = Input.GetNumberFromUser("OrdreID");
+            NewOrder.ItemID = item.ID;
+            NewOrder.Amount = Input.GetNumberFromUser("Hvor mange vil du have bestilt");
             Inventory.Orders.Add(NewOrder);
         }
         public static void ShowOrders(List<Order> orders)

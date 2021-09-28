@@ -15,7 +15,7 @@ namespace ERPsystem
             {
                 Console.Clear();
                 UI.write("Tryk på 1 for at se lagerts pc\n");
-                UI.write("Tryk på 2 for at se ordre pc'en (virker ikke)\n");
+                UI.write("Tryk på 2 for at se kunde pc'en\n");
                 UI.write("Tryk på 3 for at se ansættelse pc'en (virker ikke)\n");
                 int awnser = Input.GetNumberFromUser("Hvilken pc vil du bruge");
                 Console.Clear();
@@ -25,6 +25,7 @@ namespace ERPsystem
                         InventoryScreen.InventoryMenu(Inventory.Items);
                         break;
                     case 2:
+                        Costumor.CostumomerScreen.CustumorMeneu();
                         break;
                     case 3:
                         break;
