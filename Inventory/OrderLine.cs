@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ERPsystem
 {
-    class OrderLine
+    public class OrderLine
     {
         public int ID { get; set; }
         public int OrderID { get; set; }

@@ -31,7 +31,7 @@ namespace ERPsystem
                         Inventory.ReciveOrder();
                         break;
                     case 3:
-                        ShowOrders(Inventory.Orders);
+                        ShowOrderLines(Inventory.OrderLines);
                         break;
                     case 4:
                         repeat = false;
@@ -53,14 +53,16 @@ namespace ERPsystem
             NewOrder.OrderID = Input.GetNumberFromUser("OrdreID");
             NewOrder.ItemID = item.ID;
             NewOrder.Amount = Input.GetNumberFromUser("Hvor mange vil du have bestilt");
-            Inventory.Orders.Add(NewOrder);
+            Inventory.OrderLines.Add(NewOrder);
         }
-        public static void ShowOrders(List<Order> orders)
+        public static void ShowOrderLines(List<OrderLine> orderlins)
         {
-            UI.write("Name");
+            UI.write("ID");
             Console.CursorLeft = 20;
-            UI.write("Lokation");
+            UI.write("OrderID");
             Console.CursorLeft = 40;
+            UI.write("ItemID");
+            Console.CursorLeft = 60;
             UI.write("Amount\n");
             int i = 0;
             while (i < Console.WindowWidth - 1)
@@ -69,13 +71,15 @@ namespace ERPsystem
                 UI.write("=");
             }
             UI.write("\n");
-            foreach(Order order in orders)
+            foreach(OrderLine orderline in orderlins)
             {
-                UI.write(order.Itemname);
+                UI.write(orderline.ID.ToString());
                 Console.CursorLeft = 20;
-                UI.write(order.Itemlokation.ToString());
+                UI.write(orderline.OrderID.ToString());
                 Console.CursorLeft = 40;
-                UI.write(order.Amount.ToString());
+                UI.write(orderline.ItemID.ToString());
+                Console.CursorLeft = 60;
+                UI.write(orderline.Amount.ToString());
                 UI.write("\n");
             }
         }
