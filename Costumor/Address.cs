@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ERPsystem.Costumor
+namespace ERPsystem
 {
     class Address
     {
-        public static string Road { get; set; }
-        public static int HouseNR { get; set; }
-        public static int PostalCode { get; set; }
-        public static string City { get; set; }
+        public string Road { get; set; }
+        public int HouseNR { get; set; }
+        public int PostalCode { get; set; }
+        public string City { get; set; }
     }
 }

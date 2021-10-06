@@ -25,7 +25,7 @@ namespace ERPsystem
                         CreateItem();
                         break;
                     case 2:
-                        Rediger_vare(Inventory.Items[FindIndexInventory(Input.GetNumberFromUser("Varenummer"))]);
+                        Rediger_vare(Inventory.Items[FindIndexItem(Input.GetNumberFromUser("Varenummer"))]);
                         break;
                     case 3:
                         Inventorylist(Inventory.SerchInventory(Input.GetNumberFromUser("Varenummer start")));
@@ -34,7 +34,7 @@ namespace ERPsystem
                         Inventorylist(Inventory.Items);
                         break;
                     case 5:
-                        Inventory.Items.RemoveAt(FindIndexInventory(Input.GetNumberFromUser("Varenummer")));
+                        DeleteItem(Input.GetNumberFromUser("Varenummer"));
                         break;
                     case 6:
                         OrderScreen.OrderMenu();
@@ -78,7 +78,7 @@ namespace ERPsystem
             UI.write("Indkøbspris");
             Console.CursorLeft = 100;
             UI.write("Lagerplads");
-            Console.CursorLeft += 10;
+            Console.CursorLeft = 120;
             UI.write("ID\n");
             int i = 0;
             while (i < Console.WindowWidth - 1)
@@ -195,7 +195,7 @@ namespace ERPsystem
             return sikkerhed;
         }
 
-        public static int FindIndexInventory(int search)
+        public static int FindIndexItem(int search)
         {
             for(int indeks = 0;indeks <Inventory.Items.Count; indeks++)
             {
@@ -205,6 +205,11 @@ namespace ERPsystem
                 }
             }
             return -1;
+        }
+        public static void DeleteItem(int Itemnumber)
+        {
+            Database.Delete(Inventory.Items[FindIndexItem(Itemnumber)]);
+            Inventory.Items.RemoveAt(FindIndexItem(Itemnumber));
         }
     }
 

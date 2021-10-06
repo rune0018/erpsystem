@@ -24,7 +24,7 @@ namespace ERPsystem
             SqlDataReader ID = insert.ExecuteReader();
             while (ID.Read())
             {
-                item.ID = ID.GetInt32(0);
+                item.ID = int.Parse(ID.GetValue(0).ToString());
             }
         }
         public static void Insert(Order order)
@@ -34,18 +34,18 @@ namespace ERPsystem
             SqlDataReader ID = insert.ExecuteReader();
             while (ID.Read())
             {
-                order.ID = ID.GetInt32(0);
+                order.ID = int.Parse(ID.GetValue(0).ToString());
             }
 
         }
         public static void Insert(OrderLine orderLine)
         {
-            string insertstring = "INSERT INTO Orders (OrderID, ItemID, Amount)VALUES(" + orderLine.OrderID + ", " + orderLine.ItemID + ", "+orderLine.Amount+ "); select SCOPE_IDENTITY();";
+            string insertstring = "INSERT INTO OrderLines (OrderID, ItemID, Amount)VALUES(" + orderLine.OrderID + ", " + orderLine.ItemID + ", "+orderLine.Amount+ "); select SCOPE_IDENTITY();";
             SqlCommand insert = new SqlCommand(insertstring, connection);
             SqlDataReader ID = insert.ExecuteReader();
             while (ID.Read())
             {
-                orderLine.ID = ID.GetInt32(0);
+                orderLine.ID = int.Parse(ID.GetValue(0).ToString());
             }
         }
         public static List<Item> GetItems()
@@ -70,7 +70,7 @@ namespace ERPsystem
         public static List<Order> GetOrders()
         {
             List<Order> result = new();
-            SqlCommand getitems = new SqlCommand("select ID, CosumorID, DeliveryDate from Orders", connection);
+            SqlCommand getitems = new SqlCommand("select ID, CostumorID, DeliveryDate from Orders", connection);
             SqlDataReader sqlresult = getitems.ExecuteReader();
             while (sqlresult.Read())
             {
@@ -82,6 +82,22 @@ namespace ERPsystem
             }
             return result;
         }
+        public static List<OrderLine> GetOrderLines()
+        {
+            List<OrderLine> result = new();
+            SqlCommand getitems = new SqlCommand("select ID, OrderID, ItemID, Amount from OrderLines", connection);
+            SqlDataReader sqlresult = getitems.ExecuteReader();
+            while (sqlresult.Read())
+            {
+                OrderLine newOrder = new();
+                newOrder.ID = sqlresult.GetInt32(0);
+                newOrder.OrderID = sqlresult.GetInt32(1);
+                newOrder.ItemID = sqlresult.GetInt32(2);
+                newOrder.Amount = sqlresult.GetInt32(3);
+                result.Add(newOrder);
+            }
+            return result;
+        }
         public static void Update(Item item)
         {
             SqlCommand UpdateItem = new SqlCommand("update Item set Itemnumber = "+item.Itemnumber+", Name = '" + item.name + "', Amount = " + item.amount + ", SalePrice = " + item.SalePrice.ToString().Replace(',', '.') + ", PurchasePrice = " + item.PurchasePrice.ToString().Replace(',', '.') + ", Inventoryplace  = " + item.Invetoryplace + " where Id = "+item.ID+" ",connection);
@@ -89,9 +105,28 @@ namespace ERPsystem
         }
         public static void Update(Order order)
         {
-            SqlCommand UpdateOrders = new SqlCommand("update Orders set CosturmorID = " + order.CosutormorID + ", DeliveryDate = " + order.date + " where ID = " + order.ID + "", connection);
-            UpdateOrders.ExecuteNonQuery();
+            SqlCommand UpdateOrder = new SqlCommand("update Orders set CosturmorID = " + order.CosutormorID + ", DeliveryDate = " + order.date + " where ID = " + order.ID + "", connection);
+            UpdateOrder.ExecuteNonQuery();
         }
-
+        public static void Update(OrderLine orderLine)
+        {
+            SqlCommand UpdateOrderline = new SqlCommand("update OrderLines set OrderID = "+orderLine.OrderID+", ItemID = "+orderLine.ItemID+", Amount = "+orderLine.Amount+" where ID = "+orderLine.ID+"",connection);
+            UpdateOrderline.ExecuteNonQuery();
+        }
+        public static void Delete(Item item)
+        {
+            SqlCommand DeletItem = new SqlCommand("delete from Item where Id = " + item.ID + "", connection);
+            DeletItem.ExecuteNonQuery();
+        }
+        public static void Delete(Order order)
+        {
+            SqlCommand DeleteOrder = new SqlCommand("delete from Orders where ID = " + order.ID + "", connection);
+            DeleteOrder.ExecuteNonQuery();
+        }
+        public static void Delete(OrderLine orderline)
+        {
+            SqlCommand DeleteOrderLine = new SqlCommand("delete from Orderlines where ID = " + orderline.ID + "", connection);
+            DeleteOrderLine.ExecuteNonQuery();
+        }
     }
 }

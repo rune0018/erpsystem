@@ -16,16 +16,25 @@ namespace ERPsystem
             bool repeat = true;
             do
             {
-                UI.write("Tryk på 1 for at tlføje en ordre\n");
+                UI.write("Tryk på 1 for at tlføje en ordrelinje til en ordre\n");
                 UI.write("Tryk på 2 for at modtage alle vare\n");
-                UI.write("Tryk på 3 for at se ordre listen\n");
+                UI.write("Tryk på 3 for at se alle ordrelinjer\n");
                 UI.write("Tryk på 4 for at komme ud af menu'en\n");
                 int input = Input.GetNumberFromUser("");
                 Console.Clear();
                 switch (input)
                 {
                     case 1:
-                        AddOrderLine(Inventory.Items[InventoryScreen.FindIndexInventory(Input.GetNumberFromUser("Varenummer"))]);
+                        try
+                        {
+                            AddOrderLine(Inventory.Items[InventoryScreen.FindIndexItem(Input.GetNumberFromUser("Varenummer"))],Inventory.Orders[FindindexOrders(Input.GetNumberFromUser("OrderID"))]);
+                        }
+                        catch(ArgumentOutOfRangeException e)
+                        {
+                            UI.write("en af de 2 tal findes ikke\n");
+                            Logger.Error(e.Message);
+                            Logger.Error(e.StackTrace);
+                        }
                         break;
                     case 2:
                         Inventory.ReciveOrder();
@@ -47,13 +56,14 @@ namespace ERPsystem
         /// Adds an order to the orders list using the item
         /// </summary>
         /// <param name="item"></param>
-        public static void AddOrderLine(Item item)
+        public static void AddOrderLine(Item item,Order order)
         {
-            OrderLine NewOrder = new();
-            NewOrder.OrderID = Input.GetNumberFromUser("OrdreID");
-            NewOrder.ItemID = item.ID;
-            NewOrder.Amount = Input.GetNumberFromUser("Hvor mange vil du have bestilt");
-            Inventory.OrderLines.Add(NewOrder);
+            OrderLine NewOrderLine = new();
+            NewOrderLine.OrderID = order.ID;
+            NewOrderLine.ItemID = item.ID;
+            NewOrderLine.Amount = Input.GetNumberFromUser("Hvor mange vil du have bestilt");
+            Inventory.OrderLines.Add(NewOrderLine);
+            Database.Insert(NewOrderLine);
         }
         public static void ShowOrderLines(List<OrderLine> orderlins)
         {
@@ -82,6 +92,17 @@ namespace ERPsystem
                 UI.write(orderline.Amount.ToString());
                 UI.write("\n");
             }
+        }
+        public static int FindindexOrders(int search)
+        {
+            for (int indeks = 0; indeks < Inventory.Orders.Count; indeks++)
+            {
+                if (Inventory.Orders[indeks].ID == search)
+                {
+                    return indeks;
+                }
+            }
+            return -1;
         }
     }
 }

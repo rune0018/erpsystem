@@ -62,6 +62,15 @@ namespace ERPsystem
 
             foreach (Item item in Items)
             {
+                for(int i = 0; i < OrderLines.Count; i++)
+                {
+                    if(item.ID == OrderLines[i].ItemID)
+                    {
+                        item.amount -= OrderLines[i].Amount;
+                        Database.Delete(OrderLines[i]);
+                        break;
+                    }
+                }
                 Database.Update(item);
             }
         }

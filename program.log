@@ -1,3 +1,21 @@
-[28-09-2021 10:16:56][INFO] Programmet er startet
-[28-09-2021 10:17:14][INFO] Programmet er startet
-[28-09-2021 10:17:37][INFO] Programmet er startet
+[30-09-2021 12:10:19][INFO] Programmet er startet
+[30-09-2021 12:20:31][INFO] Programmet er startet
+[30-09-2021 14:34:39][INFO] Programmet er startet
+[30-09-2021 14:38:17][INFO] Programmet er startet
+[30-09-2021 14:39:30][INFO] Programmet er startet
+[30-09-2021 14:39:57][INFO] Programmet er startet
+[30-09-2021 14:45:27][INFO] Programmet er startet
+[30-09-2021 14:45:45][ERROR] Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+[30-09-2021 14:45:45][ERROR]    at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at ERPsystem.OrderScreen.OrderMenu() in C:\Users\Acer\Desktop\ERPsystem\Inventory\OrderScreen.cs:line 30
+[30-09-2021 14:48:32][INFO] Programmet er startet
+[30-09-2021 14:49:32][ERROR] Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+[30-09-2021 14:49:32][ERROR]    at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at ERPsystem.OrderScreen.OrderMenu() in C:\Users\Acer\Desktop\ERPsystem\Inventory\OrderScreen.cs:line 30
+[05-10-2021 12:30:11][INFO] Programmet er startet
+[05-10-2021 12:30:27][ERROR] Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+[05-10-2021 12:30:27][ERROR]    at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at ERPsystem.OrderScreen.OrderMenu() in C:\Users\Acer\Desktop\ERPsystem\Inventory\OrderScreen.cs:line 30
+[05-10-2021 12:33:45][INFO] Programmet er startet
+[05-10-2021 12:38:04][INFO] Programmet er startet
+[05-10-2021 14:28:42][INFO] Programmet er startet

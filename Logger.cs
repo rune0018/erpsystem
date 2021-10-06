@@ -22,6 +22,10 @@ namespace ERPsystem
         {
             logThis("INFO", Text);
         }
+        public static void Error(string Text)
+        {
+            logThis("ERROR", Text);
+        }
        
     }
 }

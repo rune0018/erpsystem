@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ERPsystem.Costumor
+namespace ERPsystem
 {
     class Costumor
     {
-        public static string Costumornumber { get; set; }
-        public static string PersonalID { get; set; }
-        public static string LatestOrderID { get; set; }
-        public static DateTime LatestOrderDate { get; set; }
+        public int ID { get; set; }
+        public int Costumornumber { get; set; }
+        public int PersonalID { get; set; }
+        public int LatestOrderID { get; set; }
+        public DateTime LatestOrderDate { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ERPsystem.Costumor
+namespace ERPsystem
 {
     class CostumomerScreen
     {
@@ -23,6 +23,7 @@ namespace ERPsystem.Costumor
                 switch (awnser)
                 {
                     case 1:
+                        ShowCostumors();
                         break;
                     case 2:
                         break;
@@ -42,7 +43,25 @@ namespace ERPsystem.Costumor
             Console.CursorLeft = 20;
             UI.write("PersonID");
             Console.CursorLeft = 40;
-            UI.write("");
+            UI.write("Seneste ordre ID");
+            Console.CursorLeft = 60;
+            UI.write("Seneste ordre dato\n\r");
+            for(int i = 0; i < Console.WindowWidth; i++)
+            {
+                UI.write("=");
+            }
+            UI.write("\n\r");
+            foreach(Costumor costumor in Costumors.costumors)
+            {
+                UI.write(costumor.Costumornumber.ToString());
+                Console.CursorLeft = 20;
+                UI.write(costumor.PersonalID.ToString());
+                Console.CursorLeft = 40;
+                UI.write(costumor.LatestOrderID.ToString());
+                Console.CursorLeft = 60;
+                UI.write(costumor.LatestOrderDate.ToString("g"));
+                UI.write("\n\r");
+            }
         }
     }
 }

@@ -10,15 +10,15 @@ namespace ERPsystem
         static void Main(string[] args)
         {
             Logger.Info("Programmet er startet");
+            Console.SetWindowSize(150, 20);
 
             Inventory.Items = Database.GetItems();
             Inventory.Orders = Database.GetOrders();
+            Inventory.OrderLines = Database.GetOrderLines();
             Console.WriteLine(Inventory.Items[0].SalePrice);
-            Database.Insert(Inventory.Items[0]);
+            
             if (test.sqlConnection())
             {
-                Inventory.CreateItem(1, "hej", 2, 0.2, 0.5, 6);
-                Inventory.CreateItem(2, "kage", 3, 10.2, 8.5, 123);
                 MainScreen.Mainmenu();
             }
             

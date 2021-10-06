@@ -25,7 +25,7 @@ namespace ERPsystem
                         InventoryScreen.InventoryMenu(Inventory.Items);
                         break;
                     case 2:
-                        Costumor.CostumomerScreen.CustumorMeneu();
+                        CostumomerScreen.CustumorMeneu();
                         break;
                     case 3:
                         break;
